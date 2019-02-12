@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header role="banner">
-<img alt="Books" src="images/books.jpg">
+<img alt="weird cat man" src="images/weirdcatbanner.jpg">
 <h1><span>Chat App</span></h1>
 <nav>
 <ul>

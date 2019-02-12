@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +18,8 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Role role;
+	private String status;
+	private List<Person> friends;
 
 	public Person(String userId, String password, String firstName,
 			String lastName,Role role) {
@@ -25,6 +28,8 @@ public class Person {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
+		setStatus("online");
+		friends = new ArrayList<Person>();
 	}
 
 	public Person(String userId, String password, String salt,
@@ -148,5 +153,30 @@ public class Person {
 		}
 		this.lastName = lastName;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		if (status.isEmpty()) {
+			throw new IllegalArgumentException("No status given");
+		}
+		this.status = status;
+	}
+
+
+	public List<Person> getFriends() {
+		return friends;
+	}
+
+	public void addFriend(Person friend) {
+		friends.add(friend);
+	}
+	public void removeFriend(Person exfriend){
+		friends.remove(exfriend);
+	}
+
+
 
 }
