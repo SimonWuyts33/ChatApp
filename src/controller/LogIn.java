@@ -32,7 +32,9 @@ public class LogIn extends RequestHandler {
 			PersonService personService = super.getPersonService();
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
+				person.setStatus("Online");
 				createSession(person, request, response);
+				destination = "chat.jsp";
 			} else {
 				errors.add("No valid email/password");
 			}

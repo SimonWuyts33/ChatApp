@@ -12,8 +12,16 @@
 <c:otherwise>
 <li><a href="Controller">Home</a></li>
 </c:otherwise>
-</c:choose>
 
+</c:choose>
+<c:if test="${user!=null}">
+    <li><a href="Controller?action=ToChat">Chat</a></li>
+    <form method="post" action="Controller?action=LogOut">
+        <li>
+            <input type="submit" id="logoutbutton" value="Log Out">
+        </li>
+    </form>
+</c:if>
 
 </ul>
 </nav>

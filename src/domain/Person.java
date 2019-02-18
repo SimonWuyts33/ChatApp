@@ -28,7 +28,7 @@ public class Person {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
-		setStatus("online");
+		setStatus("Offline");
 		friends = new ArrayList<Person>();
 	}
 
@@ -159,7 +159,7 @@ public class Person {
 	}
 
 	public void setStatus(String status) {
-		if (status.isEmpty()) {
+		if (status == null || status.trim().isEmpty()) {
 			throw new IllegalArgumentException("No status given");
 		}
 		this.status = status;

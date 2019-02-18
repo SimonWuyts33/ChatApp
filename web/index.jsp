@@ -23,7 +23,7 @@
 	</div>
 </c:if> <c:choose>
 	<c:when test="${user!=null}">
-		<p>Welcome ${user.getFirstName()}!</p>
+		<p>Welcome ${user.firstName}!</p>
 		<form method="post" action="Controller?action=LogOut">
 			<p>
 				<input type="submit" id="logoutbutton" value="Log Out">
