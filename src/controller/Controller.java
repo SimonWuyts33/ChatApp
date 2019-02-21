@@ -38,11 +38,13 @@ public class Controller extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         String destination = "index.jsp";
+        boolean async = false;
         if (action != null) {
         	RequestHandler handler;
         	try {
         		handler = controllerFactory.getController(action, model);
-				destination = handler.handleRequest(request, response);
+        		destination = handler.handleRequest(request, response);
+        		if (handler instanceof AsyncRequestHandler) {async = true;}
         	} 
         	catch (NotAuthorizedException exc) {
         		List<String> errors = new ArrayList<String>();
@@ -51,8 +53,10 @@ public class Controller extends HttpServlet {
         		destination="index.jsp";
         	}
         }
-        RequestDispatcher view = request.getRequestDispatcher(destination);
-        view.forward(request, response);
+        if (!async){
+			RequestDispatcher view = request.getRequestDispatcher(destination);
+			view.forward(request, response);
+		}
 	}
 
 }

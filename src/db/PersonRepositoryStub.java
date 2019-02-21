@@ -20,6 +20,8 @@ public class PersonRepositoryStub implements PersonRepository {
 		add(an);
 		jan.addFriend(an);
 		jan.addFriend(administrator);
+		Person bert = new Person("bert", "t", "Bert", "Von Ernie", Role.LID);
+		add(bert);
 	}
 	
 	public Person get(String personId){

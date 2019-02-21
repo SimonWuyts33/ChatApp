@@ -22,7 +22,7 @@
 		</ul>
 	</div>
 </c:if>
-	<p>Chat [${user.getStatus()}]</p>
+	<p>Chat [<i id="status">${user.getStatus()}</i>]</p>
     <div >
         <table>
             <thead>

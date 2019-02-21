@@ -162,7 +162,7 @@ public class Person {
 		if (status == null || status.trim().isEmpty()) {
 			throw new IllegalArgumentException("No status given");
 		}
-		this.status = status;
+		this.status = status.trim();
 	}
 
 
