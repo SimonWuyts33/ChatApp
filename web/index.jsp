@@ -33,8 +33,8 @@
 	<c:otherwise>
 		<form method="post" action="Controller?action=LogIn">
 			<p>
-				<label for="email">Your email </label>
-				<input type="text" id="email" name="email" value="jan@ucll.be">
+				<label for="username">Your email </label>
+				<input type="text" id="username" name="username" value="admin">
 			</p>
 			<p>
 				<label for="password">Your password</label>

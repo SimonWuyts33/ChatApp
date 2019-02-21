@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class Person {
 
-	private String userId;
+	private String username;
 	private String password;
 	private String salt;
 	private String firstName;
@@ -21,9 +21,9 @@ public class Person {
 	private String status;
 	private List<Person> friends;
 
-	public Person(String userId, String password, String firstName,
-			String lastName,Role role) {
-		setUserId(userId);
+	public Person(String username, String password, String firstName,
+				  String lastName, Role role) {
+		setUsername(username);
 		setHashedPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -32,9 +32,9 @@ public class Person {
 		friends = new ArrayList<Person>();
 	}
 
-	public Person(String userId, String password, String salt,
-			String firstName, String lastName,Role role) {
-		setUserId(userId);
+	public Person(String username, String password, String salt,
+				  String firstName, String lastName, Role role) {
+		setUsername(username);
 		setPassword(password);
 		setSalt(salt);
 		setFirstName(firstName);
@@ -54,22 +54,22 @@ public class Person {
 	}
 	
 
-	public void setUserId(String userId) {
-		if (userId.isEmpty()) {
+	public void setUsername(String username) {
+		if (username.isEmpty()) {
 			throw new IllegalArgumentException("No id given");
-		}
+		}/*
 		String USERID_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern p = Pattern.compile(USERID_PATTERN);
-		Matcher m = p.matcher(userId);
+		Matcher m = p.matcher(username);
 		if (!m.matches()) {
 			throw new IllegalArgumentException("Email not valid");
-		}
-		this.userId = userId;
+		}*/
+		this.username = username;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getPassword() {

@@ -12,16 +12,19 @@ public class PersonRepositoryStub implements PersonRepository {
 	private Map<String, Person> persons = new HashMap<String, Person>();
 	
 	public PersonRepositoryStub () {
-		Person administrator = new Person("bib@ucll.be", "t", "Bib", "Liothekaris", Role.BIB);
+		Person administrator = new Person("admin", "t", "Ad", "Min", Role.ADMIN);
 		add(administrator);
-		Person jan = new Person("jan@ucll.be", "t", "Jan", "Janssens", Role.LID);
-		add(jan);
-		Person an = new Person("an@ucll.be", "t", "An", "Cornelissen", Role.LID);
+		Person jan = new Person("jan", "t", "Jan", "Janssens", Role.USER);
+        administrator.addFriend(jan);
+        add(jan);
+		Person an = new Person("an", "t", "An", "Cornelissen", Role.USER);
 		add(an);
 		jan.addFriend(an);
 		jan.addFriend(administrator);
-		Person bert = new Person("bert", "t", "Bert", "Von Ernie", Role.LID);
-		add(bert);
+		Person bert = new Person("bert", "t", "Bert", "Von Sesame", Role.USER);
+        add(bert);
+        Person ernie = new Person("ernie", "t", "Bert", "Von Sesame", Role.USER);
+        add(ernie);
 	}
 	
 	public Person get(String personId){
@@ -39,17 +42,17 @@ public class PersonRepositoryStub implements PersonRepository {
 		if(person == null){
 			throw new IllegalArgumentException("No person given");
 		}
-		if (persons.containsKey(person.getUserId())) {
+		if (persons.containsKey(person.getUsername())) {
 			throw new IllegalArgumentException("User already exists");
 		}
-		persons.put(person.getUserId(), person);
+		persons.put(person.getUsername(), person);
 	}
 	
 	public void update(Person person){
 		if(person == null){
 			throw new IllegalArgumentException("No person given");
 		}
-		persons.put(person.getUserId(), person);
+		persons.put(person.getUsername(), person);
 	}
 	
 	public void delete(String personId){

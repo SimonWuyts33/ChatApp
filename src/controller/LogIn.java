@@ -18,9 +18,9 @@ public class LogIn extends RequestHandler {
 		String destination = "index.jsp";
 		List<String> errors = new ArrayList<String>();
 		
-		String email = request.getParameter("email");
-		if (email == null || email.isEmpty()) {
-			errors.add("No email given");
+		String username = request.getParameter("username");
+		if (username == null || username.isEmpty()) {
+			errors.add("No username given");
 		}
 		
 		String password = request.getParameter("password");
@@ -30,13 +30,13 @@ public class LogIn extends RequestHandler {
 		
 		if (errors.size() == 0) {
 			PersonService personService = super.getPersonService();
-			Person person = personService.getAuthenticatedUser(email, password);
+			Person person = personService.getAuthenticatedUser(username, password);
 			if (person != null) {
 				person.setStatus("Online");
 				createSession(person, request, response);
 				destination = "chat.jsp";
 			} else {
-				errors.add("No valid email/password");
+				errors.add("No valid username/password");
 			}
 		}
 		

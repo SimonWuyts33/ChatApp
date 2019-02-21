@@ -31,8 +31,8 @@ public class PersonService {
 		getPersonRepository().delete(id);
 	}
 	
-	public Person getAuthenticatedUser(String email, String password) {
-		return getPersonRepository().getAuthenticatedUser(email, password);
+	public Person getAuthenticatedUser(String username, String password) {
+		return getPersonRepository().getAuthenticatedUser(username, password);
 	}
 
 	private PersonRepository getPersonRepository() {
