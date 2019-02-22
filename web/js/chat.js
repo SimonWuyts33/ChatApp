@@ -1,10 +1,27 @@
 //register function to button click event.
 document.getElementById("status-submit").onclick = updateStatus;
+document.getElementById("friend-submit").onclick = addFriend;
 window.onload = getFriends;
 
 var statusSubmitRequest = new XMLHttpRequest();
 var updateFriendsRequest = new XMLHttpRequest();
+var addFriendsRequest = new XMLHttpRequest();
 
+function addFriend() {
+    var friendInput = document.getElementById("friend-input").value;
+    addFriendsRequest.open("POST", "Controller?action=AddFriend");
+    addFriendsRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    addFriendsRequest.onreadystatechange = addFriendCallback;
+    addFriendsRequest.send("newFriend=" + encodeURIComponent(friendInput));
+}
+function addFriendCallback () {
+    if (addFriendsRequest.status == 200) {
+        if (addFriendsRequest.readyState == 4) {
+            var serverResponse = JSON.parse(addFriendsRequest.responseText);
+            updateErrors(serverResponse.errors);
+        }
+    }
+}
 
 function getFriends(){
     updateFriendsRequest.open("GET", "Controller?action=GetFriends");// true optional param , true asynch, false = synch (depricated)
@@ -23,10 +40,6 @@ function updateFriends () {
             Object.keys(friends).forEach(name =>{
                 $("<tr>").append($("<td>").html(name)).append($("<td>").html(friends[name])).appendTo(table);
             })
-
-
-
-
             //updateErrors(serverResponse.errors) //wipes errors every 5 sec...
             setTimeout(getFriends, 5000)
         }

@@ -27,9 +27,13 @@
     </div>
     <div>
         <label>Change status: </label><input type="text" id="status-input"/>
-        <input type="button" id="status-submit" value="Change status" />
-        <!-- belangrijk dat script dan pas op het einde wordt geladen als je met event handlers werkt -->
+        <input type="button" id="status-submit" value="CHANGE" />
     </div>
+		<div>
+			<label>Add friend: </label><input type="text" id="friend-input"/>
+			<input type="button" id="friend-submit" value="ADD" />
+		</div>
+		<!-- belangrijk dat script dan pas op het einde wordt geladen als je met event handlers werkt -->
         <script type="text/javascript" src="js/chat.js"></script>
     </main>
 

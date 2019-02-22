@@ -15,16 +15,16 @@ public class PersonRepositoryStub implements PersonRepository {
 		Person administrator = new Person("admin", "t", "Ad", "Min", Role.ADMIN);
 		add(administrator);
 		Person jan = new Person("jan", "t", "Jan", "Janssens", Role.USER);
-        administrator.addFriend(jan);
         add(jan);
 		Person an = new Person("an", "t", "An", "Cornelissen", Role.USER);
 		add(an);
+		Person bert = new Person("bert", "t", "Bert", "Von Sesame", Role.USER);
+		add(bert);
+		Person ernie = new Person("ernie", "t", "Bert", "Von Sesame", Role.USER);
+		add(ernie);
+
 		jan.addFriend(an);
 		jan.addFriend(administrator);
-		Person bert = new Person("bert", "t", "Bert", "Von Sesame", Role.USER);
-        add(bert);
-        Person ernie = new Person("ernie", "t", "Bert", "Von Sesame", Role.USER);
-        add(ernie);
 	}
 	
 	public Person get(String personId){

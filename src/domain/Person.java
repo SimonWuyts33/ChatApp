@@ -171,9 +171,13 @@ public class Person {
 	}
 
 	public void addFriend(Person friend) {
+	    if(friend == null) throw new IllegalArgumentException("This is not an existing person.");
+		if(friends.contains(friend))return;
 		friends.add(friend);
-	}
+        friend.addFriend(this);
+    }
 	public void removeFriend(Person exfriend){
+		exfriend.removeFriend(this);
 		friends.remove(exfriend);
 	}
 
