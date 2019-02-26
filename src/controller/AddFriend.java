@@ -30,7 +30,6 @@ public class AddFriend extends AsyncRequestHandler {
             responseBuilder.append("errors", errors);
   		}
 
-		responseBuilder.build(response);
-		return "dummy";
+		return responseBuilder.build();
 	}
 }

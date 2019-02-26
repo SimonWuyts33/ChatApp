@@ -31,7 +31,6 @@ public class UpdateStatus extends AsyncRequestHandler {
             responseBuilder.append("errors", errors);
   		}
 
-		responseBuilder.build(response);
-		return "dummy";
+		return responseBuilder.build();
 	}
 }

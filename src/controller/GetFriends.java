@@ -19,14 +19,12 @@ public class GetFriends extends AsyncRequestHandler {
 
         response.setContentType("application/json");
         ResponseBuilder responseBuilder = new ResponseBuilder();
-
         user.getFriends().forEach( friend -> responseBuilder.appendToObject("friends", friend.getUsername(), friend.getStatus()));
 
 		if (errors.size() > 0) {
             responseBuilder.append("errors", errors);
 
 		}
-		responseBuilder.build(response);
-		return "dummy";
+		 return responseBuilder.build();
 	}
 }

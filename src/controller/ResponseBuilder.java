@@ -1,5 +1,6 @@
 package controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,11 +20,11 @@ public class ResponseBuilder{
         map.put(key, value);
         return this;
     }
-    public void build(HttpServletResponse response){
+    public String build(){
         try{
             String json = mapper.writeValueAsString(map);
-            response.getWriter().write(json);
-        } catch (IOException e){
+            return json;
+        } catch (JsonProcessingException e){
             throw new IllegalArgumentException(e);
         }
     }

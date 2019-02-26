@@ -34,13 +34,23 @@ function updateFriends () {
         if (updateFriendsRequest.readyState == 4) {
 
             var serverResponse = JSON.parse(updateFriendsRequest.responseText);
+            console.log(serverResponse);
             var friends = serverResponse.friends;
-            var table = document.getElementById("friend-table");
-            table.innerText = "";
-            Object.keys(friends).forEach(name =>{
-                $("<tr>").append($("<td>").html(name)).append($("<td>").html(friends[name])).appendTo(table);
-            })
-            //updateErrors(serverResponse.errors) //wipes errors every 5 sec...
+            if( friends !== undefined){
+                var table = document.getElementById("friend-table");
+                table.innerText = "";
+                Object.keys(friends).forEach(name =>{
+                    var tr = document.createElement("tr");
+                    var td1 = document.createElement("td");
+                    var td2 = document.createElement("td");
+                    td1.innerText = name;
+                    td2.innerText = friends[name];
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    table.appendChild(tr);
+                });
+            }
+
             setTimeout(getFriends, 5000)
         }
     }
