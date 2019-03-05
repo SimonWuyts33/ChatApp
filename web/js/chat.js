@@ -34,7 +34,7 @@ function updateFriends () {
         if (updateFriendsRequest.readyState == 4) {
 
             var serverResponse = JSON.parse(updateFriendsRequest.responseText);
-            console.log(serverResponse);
+            //console.log(serverResponse);
             var friends = serverResponse.friends;
             if( friends !== undefined){
                 var table = document.getElementById("friend-table");
