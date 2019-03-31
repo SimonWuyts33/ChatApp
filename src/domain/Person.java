@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class Person {
 
-	private String username;
+	private String username; // unique PK
 	private String password;
 	private String salt;
 	private String firstName;

@@ -17,7 +17,7 @@ public class AddFriend extends AsyncRequestHandler {
 
 
         response.setContentType("application/json");
-        ResponseBuilder responseBuilder = new ResponseBuilder();
+        JsonBuilder jsonBuilder = new JsonBuilder();
 
 		try{
 			Person newFriend = getPersonService().getPerson(request.getParameter("newFriend"));
@@ -27,9 +27,9 @@ public class AddFriend extends AsyncRequestHandler {
 		}
 
 		if (errors.size() > 0) {
-            responseBuilder.append("errors", errors);
+            jsonBuilder.append("errors", errors);
   		}
 
-		return responseBuilder.build();
+		return jsonBuilder.build();
 	}
 }

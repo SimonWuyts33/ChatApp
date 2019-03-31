@@ -17,7 +17,7 @@ public class UpdateStatus extends AsyncRequestHandler {
 
 
         response.setContentType("application/json");
-        ResponseBuilder responseBuilder = new ResponseBuilder();
+        JsonBuilder jsonBuilder = new JsonBuilder();
 
 		try{
 			user.setStatus(status);
@@ -25,12 +25,12 @@ public class UpdateStatus extends AsyncRequestHandler {
 			errors.add(e.getMessage());
 		}
 
-        responseBuilder.append("status", user.getStatus());
+        jsonBuilder.append("status", user.getStatus());
 
 		if (errors.size() > 0) {
-            responseBuilder.append("errors", errors);
+            jsonBuilder.append("errors", errors);
   		}
 
-		return responseBuilder.build();
+		return jsonBuilder.build();
 	}
 }

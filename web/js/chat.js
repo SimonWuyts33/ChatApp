@@ -44,6 +44,7 @@ function updateFriends () {
                     var td1 = document.createElement("td");
                     var td2 = document.createElement("td");
                     td1.innerText = name;
+                    td1.onclick = chat;
                     td2.innerText = friends[name];
                     tr.appendChild(td1);
                     tr.appendChild(td2);
@@ -89,4 +90,14 @@ function updateErrors(errors){
         ul.appendChild(li);
     });
     div.style.display = "block"; //show new errors
+}
+
+
+////JQuery, deelopdracht 3
+
+function chat(event){
+    let name = event.target.innerText;
+    console.log(name);
+
+
 }

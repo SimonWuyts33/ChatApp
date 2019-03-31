@@ -2,21 +2,20 @@ package controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResponseBuilder{
+public class JsonBuilder {
     private Map<String, Object> map;
     private ObjectMapper mapper;
 
-    ResponseBuilder(){
+    JsonBuilder(){
         map = new HashMap<>();
         mapper = new ObjectMapper();
     }
 
-    public ResponseBuilder append(String key, Object value) {
+    public JsonBuilder append(String key, Object value) {
         map.put(key, value);
         return this;
     }
@@ -28,7 +27,7 @@ public class ResponseBuilder{
             throw new IllegalArgumentException(e);
         }
     }
-    public ResponseBuilder appendToObject(String objectKey, String key, Object value) {
+    public JsonBuilder appendToObject(String objectKey, String key, Object value) {
         if(!map.containsKey(objectKey)){
             map.put(objectKey, new HashMap<String, Object>());
         }
