@@ -1,4 +1,4 @@
-package controller;
+package controller.handlers;
 
 import domain.Person;
 
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LogOut extends RequestHandler {
+public class LogOutHandler extends RequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request,

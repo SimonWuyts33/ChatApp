@@ -1,4 +1,4 @@
-package controller;
+package controller.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +10,13 @@ import javax.servlet.http.HttpSession;
 import domain.Person;
 import domain.PersonService;
 
-public class LogIn extends RequestHandler {
+public class LogInHandler extends RequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
 		String destination = "index.jsp";
-		List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<>();
 		
 		String username = request.getParameter("username");
 		if (username == null || username.isEmpty()) {

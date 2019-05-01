@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JsonBuilder {
-    private Map<String, Object> map;
-    private ObjectMapper mapper;
+    private final Map<String, Object> map;
+    private final ObjectMapper mapper;
 
-    JsonBuilder(){
+    public JsonBuilder(){
         map = new HashMap<>();
         mapper = new ObjectMapper();
     }
@@ -21,17 +21,16 @@ public class JsonBuilder {
     }
     public String build(){
         try{
-            String json = mapper.writeValueAsString(map);
-            return json;
+            return mapper.writeValueAsString(map);
         } catch (JsonProcessingException e){
             throw new IllegalArgumentException(e);
         }
     }
-    public JsonBuilder appendToObject(String objectKey, String key, Object value) {
+    public <T> JsonBuilder appendToObject(String objectKey, String key, T value) {
         if(!map.containsKey(objectKey)){
-            map.put(objectKey, new HashMap<String, Object>());
+            map.put(objectKey, new HashMap<String, T>());
         }
-        Map<String, Object> subMap = (HashMap<String, Object>) map.get(objectKey);
+        Map<String, T> subMap = (HashMap<String, T>) map.get(objectKey);
         subMap.put(key, value);
         return this;
     }

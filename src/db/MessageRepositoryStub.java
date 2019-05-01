@@ -10,7 +10,7 @@ import java.util.Map;
 import static java.util.Objects.isNull;
 
 public class MessageRepositoryStub implements MessageRepository {
-	private Map<String, List<Message>> messageMap;
+	private final Map<String, List<Message>> messageMap;
 
 	public MessageRepositoryStub() {
 		messageMap = new HashMap<>();

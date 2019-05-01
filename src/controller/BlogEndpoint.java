@@ -12,8 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ServerEndpoint("/Blog")
-public class BlogEndpoint {
-    private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+class BlogEndpoint {
+    private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
 
     @OnOpen
     public void onOpen(Session session){

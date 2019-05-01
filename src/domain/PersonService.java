@@ -6,7 +6,7 @@ import db.PersonRepository;
 import db.PersonRepositoryStub;
 
 public class PersonService {
-	private PersonRepository personRepository = new PersonRepositoryStub();
+	private final PersonRepository personRepository = new PersonRepositoryStub();
 
 	public PersonService(){
 	}

@@ -1,14 +1,12 @@
 package domain;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Person {
 
@@ -29,7 +27,7 @@ public class Person {
 		setLastName(lastName);
 		setRole(role);
 		setStatus("Offline");
-		friends = new ArrayList<Person>();
+		friends = new ArrayList<>();
 	}
 
 	public Person(String username, String password, String salt,
@@ -49,12 +47,12 @@ public class Person {
 		return this.role;
 	}
 
-	public void setRole(Role role) {
+	private void setRole(Role role) {
 		this.role=role;
 	}
 	
 
-	public void setUsername(String username) {
+	private void setUsername(String username) {
 		if (username.isEmpty()) {
 			throw new IllegalArgumentException("No id given");
 		}/*
@@ -72,7 +70,7 @@ public class Person {
 		return username;
 	}
 
-	public String getPassword() {
+	private String getPassword() {
 		return password;
 	}
 
@@ -83,14 +81,14 @@ public class Person {
 		return getPassword().equals(hashPassword(password, getSalt()));
 	}
 
-	public void setPassword(String password) {
+	private void setPassword(String password) {
 		if (password.isEmpty()) {
 			throw new IllegalArgumentException("No password given");
 		}
 		this.password = password;
 	}
 
-	public void setHashedPassword(String password) {
+	private void setHashedPassword(String password) {
 		if (password.isEmpty()) {
 			throw new IllegalArgumentException("No password given");
 		}
@@ -108,26 +106,24 @@ public class Person {
 	}
 
 	private String hashPassword(String password, String seed) {
-		String hashedPassword = null;
+		String hashedPassword;
 		try {
 			MessageDigest crypt = MessageDigest.getInstance("SHA-1");
 			crypt.reset();
-			crypt.update(salt.getBytes("UTF-8"));
-			crypt.update(password.getBytes("UTF-8"));
+			crypt.update(salt.getBytes(StandardCharsets.UTF_8));
+			crypt.update(password.getBytes(StandardCharsets.UTF_8));
 			hashedPassword = new BigInteger(1, crypt.digest()).toString(16);
 		} catch (NoSuchAlgorithmException e) {
 			throw new DomainException(e.getMessage(), e);
-		} catch (UnsupportedEncodingException e) {
-			throw new DomainException(e.getMessage(), e);
 		}
-		return hashedPassword;
+        return hashedPassword;
 	}
 
-	public void setSalt(String salt) {
+	private void setSalt(String salt) {
 		this.salt = salt;
 	}
 
-	public String getSalt() {
+	private String getSalt() {
 		return salt;
 	}
 
@@ -135,7 +131,7 @@ public class Person {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	private void setFirstName(String firstName) {
 		if (firstName.isEmpty()) {
 			throw new IllegalArgumentException("No firstname given");
 		}
@@ -147,7 +143,7 @@ public class Person {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	private void setLastName(String lastName) {
 		if (lastName.isEmpty()) {
 			throw new IllegalArgumentException("No last name given");
 		}

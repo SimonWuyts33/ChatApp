@@ -8,43 +8,45 @@ var updateFriendsRequest = new XMLHttpRequest();
 var addFriendsRequest = new XMLHttpRequest();
 
 function addFriend() {
-    var friendInput = document.getElementById("friend-input").value;
+    var friendInput = document.getElementById("friend-input");
     addFriendsRequest.open("POST", "Controller?action=AddFriend");
     addFriendsRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     addFriendsRequest.onreadystatechange = addFriendCallback;
-    addFriendsRequest.send("newFriend=" + encodeURIComponent(friendInput));
+    addFriendsRequest.send("newFriend=" + encodeURIComponent(friendInput.value));
+    friendInput.value= "";
 }
-function addFriendCallback () {
-    if (addFriendsRequest.status == 200) {
-        if (addFriendsRequest.readyState == 4) {
+
+function addFriendCallback() {
+    if (addFriendsRequest.status === 200) {
+        if (addFriendsRequest.readyState === 4) {
             var serverResponse = JSON.parse(addFriendsRequest.responseText);
             updateErrors(serverResponse.errors);
         }
     }
 }
 
-function getFriends(){
+function getFriends() {
     updateFriendsRequest.open("GET", "Controller?action=GetFriends");// true optional param , true asynch, false = synch (depricated)
     updateFriendsRequest.onreadystatechange = updateFriends;
     updateFriendsRequest.send();
 }
 
-function updateFriends () {
-    if (updateFriendsRequest.status == 200) {
-        if (updateFriendsRequest.readyState == 4) {
+function updateFriends() {
+    if (updateFriendsRequest.status === 200) {
+        if (updateFriendsRequest.readyState === 4) {
 
             var serverResponse = JSON.parse(updateFriendsRequest.responseText);
             //console.log(serverResponse);
             var friends = serverResponse.friends;
-            if( friends !== undefined){
+            if (friends !== undefined) {
                 var table = document.getElementById("friend-table");
                 table.innerText = "";
-                Object.keys(friends).forEach(name =>{
+                Object.keys(friends).forEach(name => {
                     var tr = document.createElement("tr");
                     var td1 = document.createElement("td");
                     var td2 = document.createElement("td");
                     td1.innerText = name;
-                    td1.onclick = chat;
+                    td1.addEventListener("click", chat);
                     td2.innerText = friends[name];
                     tr.appendChild(td1);
                     tr.appendChild(td2);
@@ -57,34 +59,35 @@ function updateFriends () {
     }
 }
 
-function updateStatus (){
-    var statusInput = document.getElementById("status-input").value;
+function updateStatus() {
+    var statusInput = document.getElementById("status-input");
     statusSubmitRequest.open("POST", "Controller?action=UpdateStatus");
     statusSubmitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     statusSubmitRequest.onreadystatechange = getStatus;
-    statusSubmitRequest.send("status=" + encodeURIComponent(statusInput));
+    statusSubmitRequest.send("status=" + encodeURIComponent(statusInput.value));
+    statusInput.value = "";
 }
 
-function getStatus () {
-    if (statusSubmitRequest.status == 200) {
-        if (statusSubmitRequest.readyState == 4) {
+function getStatus() {
+    if (statusSubmitRequest.status === 200) {
+        if (statusSubmitRequest.readyState === 4) {
             var serverResponse = JSON.parse(statusSubmitRequest.responseText);
             var statusDiv = document.getElementById("status");
-            statusDiv.innerHTML=serverResponse.status;
+            statusDiv.innerHTML = serverResponse.status;
             updateErrors(serverResponse.errors)
         }
     }
 }
 
-function updateErrors(errors){
+function updateErrors(errors) {
     var ul = document.getElementById("error-list");
     var div = document.getElementById("error-field");
     ul.innerText = ""; //clear errorslist
     div.style.display = "none"; //hide errors
 
-    if(errors === undefined) return; // No errors
+    if (errors === undefined) return; // No errors
 
-    errors.forEach( error =>{
+    errors.forEach(error => {
         var li = document.createElement("li");
         li.innerText = error;
         ul.appendChild(li);
@@ -95,7 +98,7 @@ function updateErrors(errors){
 
 ////JQuery, deelopdracht 3
 
-function chat(event){
+function chat(event) {
     let name = event.target.innerText;
     console.log(name);
 

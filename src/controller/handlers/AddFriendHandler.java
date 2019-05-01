@@ -1,5 +1,6 @@
-package controller;
+package controller.handlers;
 
+import controller.JsonBuilder;
 import domain.Person;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddFriend extends AsyncRequestHandler {
+public class AddFriendHandler extends AsyncRequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
-		List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<>();
 		Person user = (Person) request.getSession().getAttribute("user");
 
 

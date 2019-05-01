@@ -9,7 +9,7 @@ import domain.Person;
 import domain.Role;
 
 public class PersonRepositoryStub implements PersonRepository {
-	private Map<String, Person> persons = new HashMap<String, Person>();
+	private final Map<String, Person> persons = new HashMap<>();
 	
 	public PersonRepositoryStub () {
 		Person administrator = new Person("admin", "t", "Ad", "Min", Role.ADMIN);

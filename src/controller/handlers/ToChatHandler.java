@@ -1,21 +1,19 @@
-package controller;
+package controller.handlers;
 
 import domain.Person;
-import domain.PersonService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToChat extends RequestHandler {
+public class ToChatHandler extends RequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
 		String destination = "index.jsp";
-		List<String> errors = new ArrayList<String>();
+		List<String> errors = new ArrayList<>();
 
 		Person user = (Person) request.getSession().getAttribute("user");
 		if (user == null){
