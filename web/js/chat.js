@@ -3,9 +3,10 @@ document.getElementById("status-submit").onclick = updateStatus;
 document.getElementById("friend-submit").onclick = addFriend;
 window.onload = getFriends;
 
-var statusSubmitRequest = new XMLHttpRequest();
-var updateFriendsRequest = new XMLHttpRequest();
-var addFriendsRequest = new XMLHttpRequest();
+const statusSubmitRequest = new XMLHttpRequest();
+const updateFriendsRequest = new XMLHttpRequest();
+const addFriendsRequest = new XMLHttpRequest();
+
 
 function addFriend() {
     var friendInput = document.getElementById("friend-input");
@@ -13,7 +14,7 @@ function addFriend() {
     addFriendsRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     addFriendsRequest.onreadystatechange = addFriendCallback;
     addFriendsRequest.send("newFriend=" + encodeURIComponent(friendInput.value));
-    friendInput.value= "";
+    friendInput.value = "";
 }
 
 function addFriendCallback() {
@@ -46,7 +47,7 @@ function updateFriends() {
                     var td1 = document.createElement("td");
                     var td2 = document.createElement("td");
                     td1.innerText = name;
-                    td1.addEventListener("click", chat);
+                    td1.addEventListener("click", openMessageTab);
                     td2.innerText = friends[name];
                     tr.appendChild(td1);
                     tr.appendChild(td2);
@@ -98,9 +99,38 @@ function updateErrors(errors) {
 
 ////JQuery, deelopdracht 3
 
-function chat(event) {
-    let name = event.target.innerText;
-    console.log(name);
+const chatTabsContainer = $("#tabs");
+const chatTabHeaderList = $("#tab-headers");
 
+function openMessageTab(event) {
+    const name = event.target.innerText;
 
+    if (!$("#" + name).length) {
+        createMessageTab(name)
+        chatTabsContainer.tabs("option", "active", -1);
+    }
 }
+
+function createMessageTab(name) {
+    chatTabHeaderList.append(
+        $("<li>").append(
+            $("<a>")
+                .attr("href", "#" + name)
+                .text(name)
+        ));
+
+    chatTabsContainer.append(
+        $("<div>")
+            .attr("id", name)
+            .text("test text")
+    );
+    chatTabsContainer.tabs("refresh");
+}
+
+
+// Initialize tabs
+$(function () {
+    chatTabsContainer.tabs({
+        "heightStyle": "fill"
+    });
+});

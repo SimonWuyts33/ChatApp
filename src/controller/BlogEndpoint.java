@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ServerEndpoint("/Blog")
-class BlogEndpoint {
+public class BlogEndpoint {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
 
     @OnOpen
